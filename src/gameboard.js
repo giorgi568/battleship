@@ -26,9 +26,48 @@ class Gameboard {
       }
     }
 
+    if (
+      !this.checkForPlacX(shipObj.x_cords[0], shipObj.x_cords[1]) ||
+      !this.checkForPlacY(shipObj.y_cords[0], shipObj.y_cords[1])
+    ) {
+      return false;
+    }
+    
     this.ships.push(shipObj);
 
     return this.ships[0].x_cords;
+  }
+
+  checkForPlacX(x, y) {
+    let thereIsPlace = true;
+    this.ships.forEach((ship) => {
+      if (
+        x >= ship.x_cords[0] &&
+        x <= ship.x_cords[1] &&
+        y >= ship.x_cords[0] &&
+        y <= ship.x_cords[1]
+      ) {
+        return (thereIsPlace = false);
+      }
+    });
+
+    return thereIsPlace;
+  }
+
+  checkForPlacY(x, y) {
+    let thereIsPlace = true;
+    this.ships.forEach((ship) => {
+      if (
+        y >= ship.y_cords[0] &&
+        y <= ship.y_cords[1] &&
+        x >= ship.y_cords[0] &&
+        x <= ship.y_cords[1]
+      ) {
+        return (thereIsPlace = false);
+      }
+    });
+
+    return thereIsPlace;
   }
 }
 
