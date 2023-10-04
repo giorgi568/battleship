@@ -1,8 +1,10 @@
+import { json } from 'node:stream/consumers';
 import { Ship } from './ship';
 
 class Gameboard {
   constructor() {
     this.ships = [];
+    this.misses = [];
   }
 
   placeShip(direction, length, x_cor, y_cor) {
@@ -13,14 +15,14 @@ class Gameboard {
     if (direction === 'horizontal') {
       if (y_cor + ship.length <= 10) {
         shipObj.x_cords = [x_cor, x_cor];
-        shipObj.y_cords = [y_cor, y_cor + ship.length];
+        shipObj.y_cords = [y_cor, y_cor + (ship.length - 1)];
       } else {
         return false;
       }
     } else if (direction === 'vertical') {
       if (x_cor + ship.length <= 10) {
         shipObj.y_cords = [y_cor, y_cor];
-        shipObj.x_cords = [x_cor, x_cor + ship.length];
+        shipObj.x_cords = [x_cor, x_cor + (ship.length - 1)];
       } else {
         return false;
       }
@@ -32,7 +34,7 @@ class Gameboard {
     ) {
       return false;
     }
-    
+
     this.ships.push(shipObj);
 
     return this.ships[0].x_cords;
@@ -68,6 +70,48 @@ class Gameboard {
     });
 
     return thereIsPlace;
+  }
+
+  checkMissesArray(x, y) {
+    let alreadyShot = false;
+    this.misses.forEach((arr) => {
+      if (JSON.stringify(arr) === JSON.stringify([x, y])) {
+        return (alreadyShot = true);
+      }
+    });
+    return alreadyShot;
+  }
+
+  hitShip(x, y) {
+    this.ships.forEach((ship) => {
+      if (
+        x >= ship.x_cords[0] &&
+        x <= ship.x_cords[1] &&
+        y >= ship.y_cords[0] &&
+        y <= ship.y_cords[1]
+      ) {
+        ship.obj.hit();
+        this.misses.push([x, y]);
+      }
+    });
+  }
+
+  receiveAttack(x, y) {
+    if (this.checkMissesArray(x, y)) {
+      return 'place had already hit';
+    }
+
+    if (this.checkForPlacX(x, y) && this.checkForPlacY(x, y)) {
+      this.misses.push([x, y]);
+    } else {
+      this.hitShip(x, y);
+    }
+  }
+
+  allShipsSunk() {
+    return this.ships.every((ship) => {
+      return ship.obj.isSunk() === true;
+    });
   }
 }
 
