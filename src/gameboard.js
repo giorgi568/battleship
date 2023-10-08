@@ -5,6 +5,7 @@ class Gameboard {
   constructor() {
     this.ships = [];
     this.misses = [];
+    //misses array also consists of hits
   }
 
   placeShip(direction, length, x_cor, y_cor) {
