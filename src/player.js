@@ -135,9 +135,16 @@ class Player {
     return result;
   }
   availableMoves() {
-    return this.gb.filter((cords) => this.compareFn(cords, this.board.misses) === 0);
+    return this.gb.filter(
+      (cords) => this.compareFn(cords, this.board.misses) === 0
+    );
   }
-  randomMove() {}
+  randomMove() {
+    let availableMoves = this.availableMoves();
+    let randomIndex = Math.floor(Math.random() * availableMoves.length);
+    // return availableMoves;
+    return availableMoves[randomIndex];
+  }
 }
 
 export { Player };
