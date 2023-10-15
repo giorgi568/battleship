@@ -114,6 +114,7 @@ class Gameboard {
       return ship.obj.isSunk() === true;
     });
   }
+
 }
 
 export { Gameboard };

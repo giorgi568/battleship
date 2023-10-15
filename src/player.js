@@ -145,6 +145,38 @@ class Player {
     // return availableMoves;
     return availableMoves[randomIndex];
   }
+
+  randomDirection() {
+    if (Math.random() > 0.5) {
+      return 'horizontal';
+    } else {
+      return 'vertical';
+    }
+  }
+  randomBoat(len) {
+    let randomSpot = this.randomMove();
+    let randomDirection = this.randomDirection();
+
+    if (
+      this.board.placeShip(randomDirection, len, randomSpot[0], randomSpot[1])
+    ) {
+      return true;
+    } else {
+      // return false;
+      this.randomBoat(len);
+    }
+  }
+
+  randomBoard() {
+    // for (let i = 0; i < 6; i++) {
+    //   this.randomBoat();
+    // }
+    this.randomBoat(5);
+    this.randomBoat(3);
+    this.randomBoat(3);
+    this.randomBoat(2);
+    // return 1;
+  }
 }
 
 export { Player };
