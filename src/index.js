@@ -1,2 +1,7 @@
 import './style.css';
-console.log('haa');
+import drawBoard from './boardUI';
+import { dab } from './dab';
+// console.log('haa');
+dab();
+drawBoard();
+ 
