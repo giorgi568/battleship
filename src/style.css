@@ -1,4 +1,4 @@
-body{
+body {
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -6,22 +6,22 @@ body{
   height: 100vh;
 }
 
-h1{
-  color: #F2F7A1;
+h1 {
+  color: #f2f7a1;
 }
 
-.header{
+.header {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #071952;
 }
-.content{
+.content {
   height: 100%;
-  background-color: #F2F7A1;
+  background-color: #f2f7a1;
 }
-.main_content{
+.main_content {
   /* height: 100%; */
   display: flex;
   flex-direction: column;
@@ -30,23 +30,23 @@ h1{
   padding-top: 4%;
 }
 
-input{
+input {
   width: 250px;
   height: 30px;
-  background-color: #F2F7A1;
+  background-color: #f2f7a1;
   font-size: 20px;
   border: 2px solid black;
   border-radius: 5px;
 }
-input:focus{
+input:focus {
   background-color: #071952;
   color: white;
 }
-label{
+label {
   font-weight: 600;
   font-size: larger;
 }
-.board_grid{
+.board_grid {
   margin-top: 50px;
   display: grid;
   grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
@@ -58,4 +58,8 @@ label{
   padding: 18px;
   /* font-size: 30px; */
   text-align: center;
+}
+
+.green-shadow {
+  background-color: green;
 }
