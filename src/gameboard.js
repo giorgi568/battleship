@@ -1,10 +1,10 @@
-
 import { Ship } from './ship';
 
 class Gameboard {
   constructor() {
     this.ships = [];
     this.misses = [];
+    this.allShipCords = [];
     //misses array also consists of hits
   }
 
@@ -13,32 +13,84 @@ class Gameboard {
 
     let shipObj = {};
     shipObj.obj = ship;
-    if (direction === 'horizontal') {
+    if (direction === 'vertical') {
       if (y_cor + ship.length <= 10) {
         shipObj.x_cords = [x_cor, x_cor];
         shipObj.y_cords = [y_cor, y_cor + (ship.length - 1)];
       } else {
+        console.log('11111');
         return false;
       }
-    } else if (direction === 'vertical') {
+    } else if (direction === 'horizontal') {
       if (x_cor + ship.length <= 10) {
         shipObj.y_cords = [y_cor, y_cor];
         shipObj.x_cords = [x_cor, x_cor + (ship.length - 1)];
       } else {
+        console.log('11111');
         return false;
       }
     }
 
-    if (
-      !this.checkForPlacX(shipObj.x_cords[0], shipObj.x_cords[1]) ||
-      !this.checkForPlacY(shipObj.y_cords[0], shipObj.y_cords[1])
-    ) {
+    let allcords = this.getShipCords(direction, length, x_cor, y_cor);
+    // this.allShipCords.push(allcords);
+    // console.log(allcords, this.allShipCords);
+    // console.log(this.checkForPlace(allcords, this.allShipCords));
+    if (!this.checkForPlace(allcords, this.allShipCords)) {
+      // console.log('buggggg');
       return false;
+    } else {
+      // this.allShipCords.push(allcords);
+      allcords.forEach((arr) => this.allShipCords.push(arr));
     }
+
+    // if (
+    //   !this.checkForPlacX(shipObj.x_cords[0], shipObj.x_cords[1]) ||
+    //   !this.checkForPlacY(shipObj.y_cords[0], shipObj.y_cords[1])
+    // ) {
+    //   console.log('buggggg');
+    //   return false;
+    // }
 
     this.ships.push(shipObj);
 
-    return this.ships[0].x_cords;
+    return this.ships;
+  }
+
+  getShipCords(direction, length, x_cor, y_cor) {
+    let allCords = [];
+    if (direction === 'horizontal') {
+      for (let i = x_cor; i < x_cor + length; i++) {
+        allCords.push([i, y_cor]);
+      }
+    } else if (direction === 'vertical') {
+      for (let i = y_cor; i < y_cor + length; i++) {
+        allCords.push([x_cor, i]);
+      }
+    }
+    // console.log('heres cords - ' + allCords);
+    return allCords;
+  }
+
+  sameArray(arr1, arr2) {
+    //returns true if arrays are same
+    if (arr1[0] === arr2[0] && arr1[1] === arr2[1]) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  checkForPlace(allcords, allShipCords) {
+    for (const arr1 of allcords) {
+      for (const arr2 of allShipCords) {
+        console.log(allShipCords[0]);
+        if (this.sameArray(arr1, arr2)) {
+          console.log(858585858);
+          return false;
+        }
+      }
+    }
+    return true;
   }
 
   checkForPlacX(x, y) {
@@ -114,7 +166,6 @@ class Gameboard {
       return ship.obj.isSunk() === true;
     });
   }
-
 }
 
 export { Gameboard };

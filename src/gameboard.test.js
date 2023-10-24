@@ -21,11 +21,11 @@ test('it doesnt go off the edges', () => {
   expect(gb.placeShip('vertical', 3, 8, 2)).toBe(false);
 });
 
-test('checking for taken places', () => {
+test.only('checking for taken places', () => {
   let gb = new Gameboard();
-  gb.placeShip('vertical', 3, 2, 2);
+  gb.placeShip('horizontal', 5, 1, 1);
 
-  expect(gb.placeShip('vertical', 3, 1, 2)).toBe(false);
+  expect(gb.placeShip('horizontal', 5, 1, 10)).toBe(false);
 });
 
 test('checking recieveAttack function', () => {
@@ -48,7 +48,7 @@ test('checking hitShip', () => {
   expect(gb.hitShip(2, 2)).toBe('x');
 });
 
-test.only('test allShipsSunk', () => {
+test('test allShipsSunk', () => {
   let gb = new Gameboard();
   gb.placeShip('vertical', 3, 2, 2);
   gb.receiveAttack(2, 2);

@@ -24,11 +24,10 @@ function drawBoard() {
 }
 
 function drawShipPlacement(cell, length, direction) {
-  cell = cell.split(',');
-  cell = cell.map((str) => {
-    return parseInt(str, 10);
-  });
-  console.log(cell);
+  // cell = cell.split(',');
+  // cell = cell.map((str) => {
+  //   return parseInt(str, 10);
+  // });
 
   let allCells = document.getElementsByClassName('grid-item');
   for (let i = 0; i < allCells.length; i++) {
@@ -36,18 +35,18 @@ function drawShipPlacement(cell, length, direction) {
   }
 
   if (direction === 'horizontal') {
-    console.log(cell[0] + length);
-    if (cell[0] + length <= 10) {
-      for (let i = cell[0]; i <= cell[0] + length; i++) {
+    // console.log(cell[0], length);
+    if (cell[0] + length <= 11) {
+      //11 is chosen as an arbitrary number
+      for (let i = cell[0]; i < cell[0] + length; i++) {
         let greenCell = document.getElementById(`${i},${cell[1]}`);
         greenCell.classList.add('green-shadow');
-        // conosle.log(greenCell);
       }
     }
   }
 
   if (direction === 'vertical') {
-    if (cell[1] + length <= 10) {
+    if (cell[1] + length < 11) {
       for (let i = cell[1]; i <= cell[1] + length; i++) {
         let greenCell = document.getElementById(`${cell[0]},${i}`);
         greenCell.classList.add('green-shadow');
