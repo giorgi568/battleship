@@ -1,7 +1,15 @@
 import './style.css';
 import { drawBoard, drawShipPlacement, drawShips } from './boardUI';
 import { Gameboard } from './gameboard';
+import { Player } from './player';
 // console.log('haa');
+
+let player = new Player();
+let board = player.board;
+let fleet = [5, 3, 3, 2];
+let direction = 'horizontal';
+
+
 drawBoard();
 let allCells = document.getElementsByClassName('grid-item');
 for (let i = 0; i < allCells.length; i++) {
@@ -15,16 +23,13 @@ for (let i = 0; i < allCells.length; i++) {
   });
 
   allCells[i].addEventListener('click', () => {
-    if(player.placeShip(direction, fleet[0], cell[0], cell[1])){
-      drawShips(player);
+    if (board.placeShip(direction, fleet[0], cell[0], cell[1])) {
+      drawShips(board);
       fleet.shift();
     }
-    console.log(player)
+    console.log(board);
   });
 }
-let player = new Gameboard();
-let fleet = [5, 3, 3, 2];
-let direction = 'horizontal';
 
 // player.placeShip('horizontal', 5, 1, 1)
 // player.placeShip('horizontal', 5, 1, 10)
