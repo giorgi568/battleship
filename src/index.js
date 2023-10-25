@@ -1,5 +1,5 @@
 import './style.css';
-import { drawBoard, drawShipPlacement } from './boardUI';
+import { drawBoard, drawShipPlacement, drawShips } from './boardUI';
 import { Gameboard } from './gameboard';
 // console.log('haa');
 drawBoard();
@@ -16,6 +16,7 @@ for (let i = 0; i < allCells.length; i++) {
 
   allCells[i].addEventListener('click', () => {
     if(player.placeShip(direction, fleet[0], cell[0], cell[1])){
+      drawShips(player);
       fleet.shift();
     }
     console.log(player)

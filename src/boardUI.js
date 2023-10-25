@@ -55,4 +55,13 @@ function drawShipPlacement(cell, length, direction) {
   }
 }
 
-export { drawBoard, drawShipPlacement };
+function drawShips(board) {
+  let ships = board.allShipCords
+
+  for(const ship of ships){
+    let shipCell = document.getElementById(`${ship[0]},${ship[1]}`);
+    shipCell.classList.add('ship');
+  }
+}
+
+export { drawBoard, drawShipPlacement, drawShips };

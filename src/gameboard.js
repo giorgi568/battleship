@@ -14,7 +14,7 @@ class Gameboard {
     let shipObj = {};
     shipObj.obj = ship;
     if (direction === 'vertical') {
-      if (y_cor + ship.length <= 10) {
+      if (y_cor + ship.length <= 11) {
         shipObj.x_cords = [x_cor, x_cor];
         shipObj.y_cords = [y_cor, y_cor + (ship.length - 1)];
       } else {
@@ -22,7 +22,7 @@ class Gameboard {
         return false;
       }
     } else if (direction === 'horizontal') {
-      if (x_cor + ship.length <= 10) {
+      if (x_cor + ship.length <= 11) {
         shipObj.y_cords = [y_cor, y_cor];
         shipObj.x_cords = [x_cor, x_cor + (ship.length - 1)];
       } else {
@@ -83,9 +83,7 @@ class Gameboard {
   checkForPlace(allcords, allShipCords) {
     for (const arr1 of allcords) {
       for (const arr2 of allShipCords) {
-        console.log(allShipCords[0]);
         if (this.sameArray(arr1, arr2)) {
-          console.log(858585858);
           return false;
         }
       }
