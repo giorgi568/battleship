@@ -149,7 +149,7 @@ class Gameboard {
 
   receiveAttack(x, y) {
     if (this.checkMissesArray(x, y)) {
-      return 'place had already hit';
+      return 'place was already hit';
     }
 
     if (this.checkForPlacX(x, y) && this.checkForPlacY(x, y)) {

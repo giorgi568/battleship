@@ -46,8 +46,8 @@ function drawShipPlacement(cell, length, direction) {
   }
 
   if (direction === 'vertical') {
-    if (cell[1] + length < 11) {
-      for (let i = cell[1]; i <= cell[1] + length; i++) {
+    if (cell[1] + length <= 11) {
+      for (let i = cell[1]; i < cell[1] + length; i++) {
         let greenCell = document.getElementById(`${cell[0]},${i}`);
         greenCell.classList.add('green-shadow');
       }
