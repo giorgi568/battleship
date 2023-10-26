@@ -11,7 +11,7 @@ function initializeStartingPage() {
 
   const label = document.createElement('label');
   label.setAttribute('for', 'nameBox');
-  label.textContent = 'Enter Fleet Name:';
+  label.textContent = 'Enter Fleet Name';
   form.appendChild(label);
 
   const input = document.createElement('input');
