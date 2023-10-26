@@ -1,14 +1,12 @@
 import './style.css';
-import { drawBoard, drawShipPlacement, drawShips } from './boardUI';
+import { drawBoard, drawShipPlacement, drawShips, clearBoard } from './boardUI';
 import { Gameboard } from './gameboard';
 import { Player } from './player';
-// console.log('haa');
 
 let player = new Player();
 let board = player.board;
 let fleet = [5, 3, 3, 2];
 let direction = 'horizontal';
-
 
 drawBoard();
 let allCells = document.getElementsByClassName('grid-item');
@@ -31,6 +29,32 @@ for (let i = 0; i < allCells.length; i++) {
   });
 }
 
-// player.placeShip('horizontal', 5, 1, 1)
-// player.placeShip('horizontal', 5, 1, 10)
-// console.log(player)
+const restartBtn = document.getElementById('restartBtn');
+restartBtn.addEventListener('click', () => {
+  clearBoard(board);
+  player = new Player();
+  board = player.board;
+  fleet = [5, 3, 3, 2];
+});
+
+const randomizeBtn = document.getElementById('randomizeBtn');
+randomizeBtn.addEventListener('click', () => {
+  // console.log(board);
+  clearBoard(board);
+  player = new Player();
+  board = player.board;
+  fleet = [5, 3, 3, 2];
+
+  player.randomBoard();
+  drawShips(board);
+  fleet = [];
+});
+
+const directionBtn = document.getElementById('directionBtn');
+directionBtn.addEventListener('click', () => {
+  if (direction === 'horizontal') {
+    direction = 'vertical';
+  } else {
+    direction = 'horizontal';
+  }
+});

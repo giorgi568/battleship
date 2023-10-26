@@ -64,4 +64,13 @@ function drawShips(board) {
   }
 }
 
-export { drawBoard, drawShipPlacement, drawShips };
+function clearBoard(board) {
+  let ships = board.allShipCords
+
+  for(const ship of ships){
+    let shipCell = document.getElementById(`${ship[0]},${ship[1]}`);
+    shipCell.classList.remove('ship');
+  } 
+}
+
+export { drawBoard, drawShipPlacement, drawShips, clearBoard };
