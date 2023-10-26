@@ -2,6 +2,9 @@ import './style.css';
 import { drawBoard, drawShipPlacement, drawShips, clearBoard } from './boardUI';
 import { Gameboard } from './gameboard';
 import { Player } from './player';
+import { initializeStartingPage } from './initializeStartingPage';
+
+initializeStartingPage();
 
 let player = new Player();
 let board = player.board;
@@ -9,6 +12,7 @@ let fleet = [5, 3, 3, 2];
 let direction = 'horizontal';
 
 drawBoard();
+
 let allCells = document.getElementsByClassName('grid-item');
 for (let i = 0; i < allCells.length; i++) {
   let cell = allCells[i].dataset.cords.split(',');
@@ -57,4 +61,10 @@ directionBtn.addEventListener('click', () => {
   } else {
     direction = 'horizontal';
   }
+});
+
+let nameBox = document.getElementById('nameBox');
+nameBox.addEventListener('input', () => {
+  player.name = nameBox.value;
+  console.log(player.name);
 });

@@ -72,7 +72,7 @@ label {
   gap: 10px;
 }
 .board-buttons {
-  padding-top: 5px;
+  /* padding-top: 5px; */
   /* border: 2px solid black; */
   width: 70px;
   display: flex;
@@ -119,4 +119,12 @@ label {
 }
 .button:hover{
 	background: linear-gradient(#35A29F,#071952);
+}
+
+.start-game{
+  font-size: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* letter-spacing: 25px; */
 }
