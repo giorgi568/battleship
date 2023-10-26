@@ -21,21 +21,16 @@ function drawBoard() {
     gridItem.setAttribute('id', gridItem.dataset.cords);
     boardGrid.append(gridItem);
   }
+  return boardGrid;
 }
 
 function drawShipPlacement(cell, length, direction) {
-  // cell = cell.split(',');
-  // cell = cell.map((str) => {
-  //   return parseInt(str, 10);
-  // });
-
   let allCells = document.getElementsByClassName('grid-item');
   for (let i = 0; i < allCells.length; i++) {
     allCells[i].classList.remove('green-shadow');
   }
 
   if (direction === 'horizontal') {
-    // console.log(cell[0], length);
     if (cell[0] + length <= 11) {
       //11 is chosen as an arbitrary number
       for (let i = cell[0]; i < cell[0] + length; i++) {

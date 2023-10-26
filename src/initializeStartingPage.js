@@ -130,6 +130,7 @@ function initializeStartingPage() {
   const startGameButton = document.createElement('div');
   startGameButton.classList.add('start-game', 'button');
   startGameButton.textContent = 'S\nT\nA\nR\nT';
+  startGameButton.setAttribute('id', 'startBtn');
   boardPaneWrapper.appendChild(startGameButton);
 }
 

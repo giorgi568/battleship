@@ -6,7 +6,7 @@ function initializePlayer() {
   let board = player.board;
   let fleet = [5, 3, 3, 2];
   let direction = 'horizontal';
-
+  
   drawBoard();
 
   let allCells = document.getElementsByClassName('grid-item');
@@ -19,11 +19,16 @@ function initializePlayer() {
     allCells[i].addEventListener('mouseover', () => {
       return drawShipPlacement(cell, fleet[0], direction);
     });
-
+    
     allCells[i].addEventListener('click', () => {
       if (board.placeShip(direction, fleet[0], cell[0], cell[1])) {
         drawShips(board);
         fleet.shift();
+      }else{
+        allCells[i].classList.add('red-shadow');
+        setTimeout(()=> {
+          allCells[i].classList.remove('red-shadow');
+        }, 1000)
       }
       console.log(board);
     });

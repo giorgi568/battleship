@@ -62,6 +62,18 @@ label {
 
 .green-shadow {
   background-color: green;
+  transition: background-color 0.3s;
+}
+.red-shadow {
+  animation: redToGreen 1s forwards;
+}
+@keyframes redToGreen {
+  0% {
+      background-color: red;
+  }
+  100% {
+      background-color: none;
+  }
 }
 .ship {
   background-color: darkgray;
