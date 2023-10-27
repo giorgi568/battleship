@@ -1,10 +1,20 @@
 import { Player } from './player';
 
-function drawBoard() {
-  let boardGrid = document.getElementById('board_grid');
+function drawBoard(boardPanel, secondClass) {
+  let boardGrid;
+  
+  if(boardPanel) {
+    boardGrid = boardPanel;
+  }else{
+    boardGrid = document.getElementById('board_grid');
+  }
+
   for (let i = 1; i <= 100; i++) {
     let gridItem = document.createElement('div');
     gridItem.classList.add('grid-item');
+    if(secondClass){
+      gridItem.classList.add(secondClass);
+    }
     if (i === 100) {
       gridItem.dataset.cords = [10, 10];
       // gridItem.dataset.y = 10;
@@ -16,7 +26,6 @@ function drawBoard() {
         Math.round((i / 10 - Math.floor(i / 10)) * 10),
         Math.floor(i / 10) + 1,
       ];
-      // gridItem.dataset.y = Math.floor(i / 10) + 1;
     }
     gridItem.setAttribute('id', gridItem.dataset.cords);
     boardGrid.append(gridItem);

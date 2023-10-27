@@ -90,6 +90,15 @@ class Gameboard {
     }
     return true;
   }
+  checkForPlaceXY(x, y) {
+    const arr1 = [x, y];
+    for (const arr2 of this.allShipCords) {
+      if (this.sameArray(arr1, arr2)) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   checkForPlacX(x, y) {
     let thereIsPlace = true;
@@ -135,33 +144,52 @@ class Gameboard {
 
   hitShip(x, y) {
     this.ships.forEach((ship) => {
-      if (
-        x >= ship.x_cords[0] &&
-        x <= ship.x_cords[1] &&
-        y >= ship.y_cords[0] &&
-        y <= ship.y_cords[1]
-      ) {
-        ship.obj.hit();
-        this.misses.push([x, y]);
+      if(x !== ship.x_cords[0] && y !== ship.y_cords[0]){
+        return false
       }
+      if(ship.x_cords[0] === ship.x_cords[1]){
+        if(y >= ship.y_cords[0] && y <= ship.y_cords[1]){
+          ship.obj.hit();
+          ship.obj.isSunk();
+          this.misses.push([x, y])
+        }
+      }else if(ship.y_cords[0] === ship.y_cords[1]){
+        if(x >= ship.x_cords[0] && x <= ship.x_cords[1]){
+          ship.obj.hit();
+          ship.obj.isSunk();
+          this.misses.push([x, y])
+        }
+      }
+      
+      // if (
+      //   x >= ship.x_cords[0] &&
+      //   x <= ship.x_cords[1] &&
+      //   y >= ship.y_cords[0] &&
+      //   y <= ship.y_cords[1]
+      // ) {
+      //   ship.obj.hit();
+      //   this.misses.push([x, y]);
+      // }
     });
   }
 
   receiveAttack(x, y) {
     if (this.checkMissesArray(x, y)) {
-      return 'place was already hit';
+      return false;
     }
 
-    if (this.checkForPlacX(x, y) && this.checkForPlacY(x, y)) {
+    if (!this.checkForPlaceXY(x, y)) {
       this.misses.push([x, y]);
+      return false;
     } else {
       this.hitShip(x, y);
+      return true;
     }
   }
 
   allShipsSunk() {
     return this.ships.every((ship) => {
-      return ship.obj.isSunk() === true;
+      return ship.obj.sunk === true;
     });
   }
 }

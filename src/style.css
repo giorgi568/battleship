@@ -58,6 +58,7 @@ label {
   padding: 18px;
   /* font-size: 30px; */
   text-align: center;
+  cursor: pointer;
 }
 
 .green-shadow {
@@ -77,6 +78,9 @@ label {
 }
 .ship {
   background-color: darkgray;
+}
+.water {
+  background-color: #088395;
 }
 
 .board-pane-wrapper {
@@ -140,4 +144,21 @@ label {
   justify-content: center;
   align-items: center;
   /* letter-spacing: 25px; */
+}
+
+.battle-pane{
+  display: flex;
+  gap: 10px;
+}
+
+.board{
+  margin-top: 70px;
+  width: 400px;
+  height: 400px;
+  border: 1px solid red;
+}
+
+.score{
+  width: 200px;
+  border: 1px solid black;
 }
