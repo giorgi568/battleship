@@ -21,14 +21,14 @@ test('it doesnt go off the edges', () => {
   expect(gb.placeShip('vertical', 3, 8, 2)).toBe(false);
 });
 
-test.only('checking for taken places', () => {
+test('checking for taken places', () => {
   let gb = new Gameboard();
   gb.placeShip('horizontal', 5, 1, 1);
 
   expect(gb.placeShip('horizontal', 5, 1, 10)).toBe(false);
 });
 
-test('checking recieveAttack function', () => {
+test.only('checking recieveAttack function', () => {
   let gb = new Gameboard();
   gb.placeShip('vertical', 3, 2, 2);
   gb.receiveAttack(2, 2);

@@ -144,32 +144,22 @@ class Gameboard {
 
   hitShip(x, y) {
     this.ships.forEach((ship) => {
-      if(x !== ship.x_cords[0] && y !== ship.y_cords[0]){
-        return false
+      if (x !== ship.x_cords[0] && y !== ship.y_cords[0]) {
+        return false;
       }
-      if(ship.x_cords[0] === ship.x_cords[1]){
-        if(y >= ship.y_cords[0] && y <= ship.y_cords[1]){
+      if (ship.x_cords[0] === ship.x_cords[1] && ship.x_cords[0] === x) {
+        if (y >= ship.y_cords[0] && y <= ship.y_cords[1]) {
           ship.obj.hit();
           ship.obj.isSunk();
-          this.misses.push([x, y])
+          this.misses.push([x, y]);
         }
-      }else if(ship.y_cords[0] === ship.y_cords[1]){
-        if(x >= ship.x_cords[0] && x <= ship.x_cords[1]){
+      } else if (ship.y_cords[0] === ship.y_cords[1] && ship.y_cords[0] === y) {
+        if (x >= ship.x_cords[0] && x <= ship.x_cords[1]) {
           ship.obj.hit();
           ship.obj.isSunk();
-          this.misses.push([x, y])
+          this.misses.push([x, y]);
         }
       }
-      
-      // if (
-      //   x >= ship.x_cords[0] &&
-      //   x <= ship.x_cords[1] &&
-      //   y >= ship.y_cords[0] &&
-      //   y <= ship.y_cords[1]
-      // ) {
-      //   ship.obj.hit();
-      //   this.misses.push([x, y]);
-      // }
     });
   }
 

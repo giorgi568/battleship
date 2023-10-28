@@ -134,23 +134,13 @@ class Player {
     });
     return result;
   }
-  availableMoves(board) {
-    if (board) {
-      return this.gb.filter(
-        (cords) => this.compareFn(cords, board.misses) === 0
-      );
-    }
+  availableMoves() {
     return this.gb.filter(
       (cords) => this.compareFn(cords, this.board.misses) === 0
     );
   }
-  randomMove(board) {
-    let availableMoves;
-    if (board) {
-      availableMoves = this.availableMoves(board);
-    } else {
-      availableMoves = this.availableMoves();
-    }
+  randomMove() {
+    let availableMoves = this.availableMoves();
     let randomIndex = Math.floor(Math.random() * availableMoves.length);
     // return availableMoves;
     return availableMoves[randomIndex];
@@ -184,8 +174,21 @@ class Player {
     this.randomBoat(2);
   }
 
-  getAdjacentAvailableCells() {
-    
+  getAdjacentAvailableCells(x, y) {
+    let adjacentCells = [];
+    if (this.compareFn([x + 1, y], this.board.misses) === 0) {
+      adjacentCells.push([x + 1, y]);
+    }
+    if (this.compareFn([x - 1, y], this.board.misses) === 0) {
+      adjacentCells.push([x - 1, y]);
+    }
+    if (this.compareFn([x, y + 1], this.board.misses) === 0) {
+      adjacentCells.push([x, y + 1]);
+    }
+    if (this.compareFn([x, y - 1], this.board.misses) === 0) {
+      adjacentCells.push([x, y - 1]);
+    }
+    return adjacentCells;
   }
 }
 

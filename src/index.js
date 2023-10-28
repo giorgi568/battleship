@@ -32,6 +32,8 @@ const score = document.getElementById('score');
 const playerBoard = document.getElementsByClassName('playerCell');
 const computerBoard = document.getElementsByClassName('computerCell');
 
+console.log(22222, computer.board.ships);
+console.log(88888, player.board.ships);
 for (let i = 0; i < computerBoard.length; i++) {
   let cell = computerBoard[i].dataset.cords.split(',');
   cell = cell.map((str) => {
@@ -41,7 +43,6 @@ for (let i = 0; i < computerBoard.length; i++) {
   computerBoard[i].addEventListener(
     'click',
     () => {
-      console.log(computer);
       if (computer.board.receiveAttack(cell[0], cell[1])) {
         computerBoard[i].classList.add('ship');
         if (computer.board.allShipsSunk()) {
@@ -49,16 +50,28 @@ for (let i = 0; i < computerBoard.length; i++) {
         }
       } else {
         computerBoard[i].classList.add('water');
-        
-        let randomMove = player.randomMove();
-        computerMove(randomMove[0], randomMove[1]);
+
+        if (adjacentCells.length > 0) {
+          // console.log(333333333, adjacentCells);
+          let adjacentCell = adjacentCells.shift();
+          setTimeout(() => {
+            computerMove(adjacentCell[0], adjacentCell[1]);
+          }, 1000);
+        }else{
+          let randomMove = player.randomMove();
+          setTimeout(() => {
+            computerMove(randomMove[0], randomMove[1]);
+          }, 1000);
+        }
       }
     },
     { once: true }
   );
 }
 
+let adjacentCells = [];
 function computerMove(x, y) {
+  // setTimeout is only for UI so it dosnt happen instantly
   if (player.board.receiveAttack(x, y)) {
     for (let i = 0; i < playerBoard.length; i++) {
       let cell = playerBoard[i].dataset.cords.split(',');
@@ -75,8 +88,24 @@ function computerMove(x, y) {
       return;
     }
 
-    let randomMove = player.randomMove();
-    computerMove(randomMove[0], randomMove[1]);
+    if (adjacentCells.length > 0) {
+      adjacentCells = player.getAdjacentAvailableCells(x, y);
+      let adjacentCell = adjacentCells.shift();
+      setTimeout(() => {
+        computerMove(adjacentCell[0], adjacentCell[1]);
+      }, 1000);
+    } else {
+      adjacentCells = player.getAdjacentAvailableCells(x, y);
+      let adjacentCell = adjacentCells.shift();
+      setTimeout(() => {
+        computerMove(adjacentCell[0], adjacentCell[1]);
+      }, 1000);
+    }
+
+    // let randomMove = player.randomMove();
+    // setTimeout(() => {
+    //   computerMove(randomMove[0], randomMove[1]);
+    // }, 1000);
   } else {
     for (let i = 0; i < playerBoard.length; i++) {
       let cell = playerBoard[i].dataset.cords.split(',');
@@ -88,6 +117,4 @@ function computerMove(x, y) {
       }
     }
   }
-  
-
 }
