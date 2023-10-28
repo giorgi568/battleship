@@ -176,19 +176,41 @@ class Player {
 
   getAdjacentAvailableCells(x, y) {
     let adjacentCells = [];
-    if (this.compareFn([x + 1, y], this.board.misses) === 0) {
+    if (
+      this.compareFn([x + 1, y], this.board.misses) === 0 &&
+      this.isWithinBounds(x + 1, y)
+    ) {
       adjacentCells.push([x + 1, y]);
     }
-    if (this.compareFn([x - 1, y], this.board.misses) === 0) {
+    if (
+      this.compareFn([x - 1, y], this.board.misses) === 0 &&
+      this.isWithinBounds(x - 1, y)
+    ) {
       adjacentCells.push([x - 1, y]);
     }
-    if (this.compareFn([x, y + 1], this.board.misses) === 0) {
+    if (
+      this.compareFn([x, y + 1], this.board.misses) === 0 &&
+      this.isWithinBounds(x, y + 1)
+    ) {
       adjacentCells.push([x, y + 1]);
     }
-    if (this.compareFn([x, y - 1], this.board.misses) === 0) {
+    if (
+      this.compareFn([x, y - 1], this.board.misses) === 0 &&
+      this.isWithinBounds(x, y - 1)
+    ) {
       adjacentCells.push([x, y - 1]);
     }
     return adjacentCells;
+  }
+
+  isWithinBounds(x, y) {
+    if (x <= 0 || x > 10) {
+      return false;
+    }
+    if (y <= 0 || y > 10) {
+      return false;
+    }
+    return true;
   }
 }
 

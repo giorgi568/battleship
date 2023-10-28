@@ -43,14 +43,6 @@ class Gameboard {
       allcords.forEach((arr) => this.allShipCords.push(arr));
     }
 
-    // if (
-    //   !this.checkForPlacX(shipObj.x_cords[0], shipObj.x_cords[1]) ||
-    //   !this.checkForPlacY(shipObj.y_cords[0], shipObj.y_cords[1])
-    // ) {
-    //   console.log('buggggg');
-    //   return false;
-    // }
-
     this.ships.push(shipObj);
 
     return this.ships;
@@ -91,6 +83,8 @@ class Gameboard {
     return true;
   }
   checkForPlaceXY(x, y) {
+    //this is kinda redundant checkforplace could be used 
+    //for this, but already wrote it so ...
     const arr1 = [x, y];
     for (const arr2 of this.allShipCords) {
       if (this.sameArray(arr1, arr2)) {
@@ -100,37 +94,37 @@ class Gameboard {
     return false;
   }
 
-  checkForPlacX(x, y) {
-    let thereIsPlace = true;
-    this.ships.forEach((ship) => {
-      if (
-        x >= ship.x_cords[0] &&
-        x <= ship.x_cords[1] &&
-        y >= ship.x_cords[0] &&
-        y <= ship.x_cords[1]
-      ) {
-        return (thereIsPlace = false);
-      }
-    });
+  // checkForPlacX(x, y) {
+  //   let thereIsPlace = true;
+  //   this.ships.forEach((ship) => {
+  //     if (
+  //       x >= ship.x_cords[0] &&
+  //       x <= ship.x_cords[1] &&
+  //       y >= ship.x_cords[0] &&
+  //       y <= ship.x_cords[1]
+  //     ) {
+  //       return (thereIsPlace = false);
+  //     }
+  //   });
 
-    return thereIsPlace;
-  }
+  //   return thereIsPlace;
+  // }
 
-  checkForPlacY(x, y) {
-    let thereIsPlace = true;
-    this.ships.forEach((ship) => {
-      if (
-        y >= ship.y_cords[0] &&
-        y <= ship.y_cords[1] &&
-        x >= ship.y_cords[0] &&
-        x <= ship.y_cords[1]
-      ) {
-        return (thereIsPlace = false);
-      }
-    });
+  // checkForPlacY(x, y) {
+  //   let thereIsPlace = true;
+  //   this.ships.forEach((ship) => {
+  //     if (
+  //       y >= ship.y_cords[0] &&
+  //       y <= ship.y_cords[1] &&
+  //       x >= ship.y_cords[0] &&
+  //       x <= ship.y_cords[1]
+  //     ) {
+  //       return (thereIsPlace = false);
+  //     }
+  //   });
 
-    return thereIsPlace;
-  }
+  //   return thereIsPlace;
+  // }
 
   checkMissesArray(x, y) {
     let alreadyShot = false;

@@ -32,41 +32,46 @@ const score = document.getElementById('score');
 const playerBoard = document.getElementsByClassName('playerCell');
 const computerBoard = document.getElementsByClassName('computerCell');
 
-console.log(22222, computer.board.ships);
-console.log(88888, player.board.ships);
-for (let i = 0; i < computerBoard.length; i++) {
-  let cell = computerBoard[i].dataset.cords.split(',');
-  cell = cell.map((str) => {
-    return parseInt(str, 10);
-  });
+// console.log(22222, computer.board.ships);
+// console.log(88888, player.board.ships);
+playerMove();
 
-  computerBoard[i].addEventListener(
-    'click',
-    () => {
-      if (computer.board.receiveAttack(cell[0], cell[1])) {
-        computerBoard[i].classList.add('ship');
-        if (computer.board.allShipsSunk()) {
-          score.textContent = 'congrats, you have won';
+function playerMove() {
+  for (let i = 0; i < computerBoard.length; i++) {
+    let cell = computerBoard[i].dataset.cords.split(',');
+    cell = cell.map((str) => {
+      return parseInt(str, 10);
+    });
+  
+    computerBoard[i].addEventListener(
+      'click',
+      () => {
+        if (computer.board.receiveAttack(cell[0], cell[1])) {
+          computerBoard[i].classList.add('ship');
+          if (computer.board.allShipsSunk()) {
+            score.textContent = 'congrats, you have won';
+          }
+        } else {
+          computerBoard[i].classList.add('water');
+  
+          if (adjacentCells.length > 0) {
+            console.log(333, adjacentCells[0]);
+            let adjacentCell = adjacentCells.shift();
+            setTimeout(() => {
+              computerMove(adjacentCell[0], adjacentCell[1]);
+            }, 1000);
+          }else{
+            console.log(222, adjacentCells);
+            let randomMove = player.randomMove();
+            setTimeout(() => {
+              computerMove(randomMove[0], randomMove[1]);
+            }, 1000);
+          }
         }
-      } else {
-        computerBoard[i].classList.add('water');
-
-        if (adjacentCells.length > 0) {
-          // console.log(333333333, adjacentCells);
-          let adjacentCell = adjacentCells.shift();
-          setTimeout(() => {
-            computerMove(adjacentCell[0], adjacentCell[1]);
-          }, 1000);
-        }else{
-          let randomMove = player.randomMove();
-          setTimeout(() => {
-            computerMove(randomMove[0], randomMove[1]);
-          }, 1000);
-        }
-      }
-    },
-    { once: true }
-  );
+      },
+      { once: true }
+    );
+  }
 }
 
 let adjacentCells = [];
@@ -102,10 +107,6 @@ function computerMove(x, y) {
       }, 1000);
     }
 
-    // let randomMove = player.randomMove();
-    // setTimeout(() => {
-    //   computerMove(randomMove[0], randomMove[1]);
-    // }, 1000);
   } else {
     for (let i = 0; i < playerBoard.length; i++) {
       let cell = playerBoard[i].dataset.cords.split(',');
