@@ -134,13 +134,23 @@ class Player {
     });
     return result;
   }
-  availableMoves() {
+  availableMoves(board) {
+    if (board) {
+      return this.gb.filter(
+        (cords) => this.compareFn(cords, board.misses) === 0
+      );
+    }
     return this.gb.filter(
       (cords) => this.compareFn(cords, this.board.misses) === 0
     );
   }
-  randomMove() {
-    let availableMoves = this.availableMoves();
+  randomMove(board) {
+    let availableMoves;
+    if (board) {
+      availableMoves = this.availableMoves(board);
+    } else {
+      availableMoves = this.availableMoves();
+    }
     let randomIndex = Math.floor(Math.random() * availableMoves.length);
     // return availableMoves;
     return availableMoves[randomIndex];
@@ -168,14 +178,14 @@ class Player {
   }
 
   randomBoard() {
-    // for (let i = 0; i < 6; i++) {
-    //   this.randomBoat();
-    // }
     this.randomBoat(5);
     this.randomBoat(3);
     this.randomBoat(3);
     this.randomBoat(2);
-    // return 1;
+  }
+
+  getAdjacentAvailableCells() {
+    
   }
 }
 

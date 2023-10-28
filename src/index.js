@@ -49,25 +49,45 @@ for (let i = 0; i < computerBoard.length; i++) {
         }
       } else {
         computerBoard[i].classList.add('water');
-
-        let randomMove = computer.randomMove();
-        console.log(6666666666666, randomMove)
-        if (player.board.receiveAttack(randomMove[0], randomMove[1])) {
-          for (let i = 0; i < playerBoard.length; i++) {
-            let cords = playerBoard[i].dataset.cords;
-            if (cords[0] === randomMove[0] && cords[1] === randomMove[1]) {
-              playerBoard[i].classList.add('ship');
-            }
-          }
-        } else {
-          playerBoard[i].classList.add('water');
-        }
-
-        if(player.board.allShipsSunk()) {
-          score.textContent = 'sorry, you have lost, computer won'
-        }
+        
+        let randomMove = player.randomMove();
+        computerMove(randomMove[0], randomMove[1]);
       }
     },
     { once: true }
   );
+}
+
+function computerMove(x, y) {
+  if (player.board.receiveAttack(x, y)) {
+    for (let i = 0; i < playerBoard.length; i++) {
+      let cell = playerBoard[i].dataset.cords.split(',');
+      cell = cell.map((str) => {
+        return parseInt(str, 10);
+      });
+      if (cell[0] === x && cell[1] === y) {
+        playerBoard[i].classList.add('ship');
+      }
+    }
+
+    if (player.board.allShipsSunk()) {
+      score.textContent = 'sorry, you have lost, computer won';
+      return;
+    }
+
+    let randomMove = player.randomMove();
+    computerMove(randomMove[0], randomMove[1]);
+  } else {
+    for (let i = 0; i < playerBoard.length; i++) {
+      let cell = playerBoard[i].dataset.cords.split(',');
+      cell = cell.map((str) => {
+        return parseInt(str, 10);
+      });
+      if (cell[0] === x && cell[1] === y) {
+        playerBoard[i].classList.add('water');
+      }
+    }
+  }
+  
+
 }
