@@ -16,18 +16,22 @@ h1 {
   align-items: center;
   justify-content: center;
   background-color: #071952;
+  height: 15%;
 }
 .content {
   height: 100%;
   background-color: #f2f7a1;
 }
 .main_content {
-  /* height: 100%; */
+  height: 85%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 4%;
+  /* padding-top: 4%; */
+  background: url('./images/background.jpg');
+  background-position: center;
+  background-size: contain;
 }
 
 input {
@@ -161,4 +165,16 @@ label {
 .score{
   width: 200px;
   border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  text-align: center;
+  background-color: grey;
+  color: white;
+}
+.menuBtn{
+  font-size: 30px;
+  width: 100px;
+  height: 40px;
 }

@@ -1,5 +1,6 @@
 function initializeStartingPage() {
   const mainContent = document.getElementById('main_content');
+  mainContent.textContent = '';
 
   const userName = document.createElement('div');
   userName.classList.add('user_name');

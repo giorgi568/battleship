@@ -83,7 +83,7 @@ class Gameboard {
     return true;
   }
   checkForPlaceXY(x, y) {
-    //this is kinda redundant checkforplace could be used 
+    //this is kinda redundant checkforplace could be used
     //for this, but already wrote it so ...
     const arr1 = [x, y];
     for (const arr2 of this.allShipCords) {
@@ -175,6 +175,16 @@ class Gameboard {
     return this.ships.every((ship) => {
       return ship.obj.sunk === true;
     });
+  }
+
+  shipsLeft() {
+    let left = this.ships.length;
+    this.ships.forEach((ship) => {
+      if(ship.obj.sunk === true){
+        left = left-1
+      }
+    });
+    return left
   }
 }
 

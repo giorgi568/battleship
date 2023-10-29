@@ -1,14 +1,13 @@
 import { drawBoard, drawShipPlacement, drawShips, clearBoard } from './boardUI';
 import { Player } from './player';
 
-function initializePlayer() {
-  let player = new Player();
-  let board = player.board;
-  let fleet = [5, 3, 3, 2];
-  let direction = 'horizontal';
-  
-  drawBoard();
+let player = new Player();
+let board = player.board;
+let fleet = [5, 3, 3, 2];
+let direction = 'horizontal';
 
+function initializePlayer() {
+  drawBoard();
   let allCells = document.getElementsByClassName('grid-item');
   for (let i = 0; i < allCells.length; i++) {
     let cell = allCells[i].dataset.cords.split(',');
@@ -68,6 +67,8 @@ function initializePlayer() {
   nameBox.addEventListener('input', () => {
     player.name = nameBox.value;
   });
+
+  return player
 }
 
-export { initializePlayer };
+export { initializePlayer, player };
