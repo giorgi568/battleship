@@ -18,7 +18,6 @@ class Gameboard {
         shipObj.x_cords = [x_cor, x_cor];
         shipObj.y_cords = [y_cor, y_cor + (ship.length - 1)];
       } else {
-        console.log('11111');
         return false;
       }
     } else if (direction === 'horizontal') {
@@ -26,20 +25,15 @@ class Gameboard {
         shipObj.y_cords = [y_cor, y_cor];
         shipObj.x_cords = [x_cor, x_cor + (ship.length - 1)];
       } else {
-        console.log('11111');
         return false;
       }
     }
 
     let allcords = this.getShipCords(direction, length, x_cor, y_cor);
-    // this.allShipCords.push(allcords);
-    // console.log(allcords, this.allShipCords);
-    // console.log(this.checkForPlace(allcords, this.allShipCords));
+
     if (!this.checkForPlace(allcords, this.allShipCords)) {
-      // console.log('buggggg');
       return false;
     } else {
-      // this.allShipCords.push(allcords);
       allcords.forEach((arr) => this.allShipCords.push(arr));
     }
 
@@ -59,7 +53,6 @@ class Gameboard {
         allCords.push([x_cor, i]);
       }
     }
-    // console.log('heres cords - ' + allCords);
     return allCords;
   }
 
@@ -93,38 +86,6 @@ class Gameboard {
     }
     return false;
   }
-
-  // checkForPlacX(x, y) {
-  //   let thereIsPlace = true;
-  //   this.ships.forEach((ship) => {
-  //     if (
-  //       x >= ship.x_cords[0] &&
-  //       x <= ship.x_cords[1] &&
-  //       y >= ship.x_cords[0] &&
-  //       y <= ship.x_cords[1]
-  //     ) {
-  //       return (thereIsPlace = false);
-  //     }
-  //   });
-
-  //   return thereIsPlace;
-  // }
-
-  // checkForPlacY(x, y) {
-  //   let thereIsPlace = true;
-  //   this.ships.forEach((ship) => {
-  //     if (
-  //       y >= ship.y_cords[0] &&
-  //       y <= ship.y_cords[1] &&
-  //       x >= ship.y_cords[0] &&
-  //       x <= ship.y_cords[1]
-  //     ) {
-  //       return (thereIsPlace = false);
-  //     }
-  //   });
-
-  //   return thereIsPlace;
-  // }
 
   checkMissesArray(x, y) {
     let alreadyShot = false;

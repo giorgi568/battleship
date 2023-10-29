@@ -33,13 +33,11 @@ function playerMove(computer, player) {
           computerBoard[i].classList.add('water');
 
           if (adjacentCells.length > 0) {
-            console.log(333, adjacentCells[0]);
             let adjacentCell = adjacentCells.shift();
             setTimeout(() => {
               computerMove(adjacentCell[0], adjacentCell[1], computer, player);
             }, 800);
           } else {
-            console.log(222, adjacentCells);
             let randomMove = player.randomMove();
             setTimeout(() => {
               computerMove(randomMove[0], randomMove[1], computer, player);

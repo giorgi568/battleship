@@ -2,7 +2,6 @@ import './style.css';
 import { initializePlayer, player } from './initializePlayer';
 import { initializeStartingPage } from './initializeStartingPage';
 import { initializeBattlePage } from './initializeBattlePage';
-import { drawBoard } from './boardUI';
 import { Player } from './player';
 import { playerMove } from './mainGameFunctions';
 
@@ -20,7 +19,6 @@ function startGame() {
     ) {
       const mainContent = document.getElementById('main_content');
       mainContent.textContent = '';
-      console.log(player);
 
       initializeBattlePage();
 

@@ -29,7 +29,6 @@ function initializePlayer() {
           allCells[i].classList.remove('red-shadow');
         }, 1000)
       }
-      console.log(board);
     });
   }
 
@@ -43,7 +42,6 @@ function initializePlayer() {
 
   const randomizeBtn = document.getElementById('randomizeBtn');
   randomizeBtn.addEventListener('click', () => {
-    // console.log(board);
     clearBoard(board);
     player = new Player();
     board = player.board;

@@ -1,4 +1,3 @@
-import { Player } from './player';
 
 function drawBoard(boardPanel, secondClass) {
   let boardGrid;
@@ -20,7 +19,6 @@ function drawBoard(boardPanel, secondClass) {
       // gridItem.dataset.y = 10;
     } else if (i % 10 === 0) {
       gridItem.dataset.cords = [10, Math.floor(i / 10)];
-      // gridItem.dataset.y = Math.floor(i / 10);
     } else {
       gridItem.dataset.cords = [
         Math.round((i / 10 - Math.floor(i / 10)) * 10),
@@ -41,7 +39,6 @@ function drawShipPlacement(cell, length, direction) {
 
   if (direction === 'horizontal') {
     if (cell[0] + length <= 11) {
-      //11 is chosen as an arbitrary number
       for (let i = cell[0]; i < cell[0] + length; i++) {
         let greenCell = document.getElementById(`${i},${cell[1]}`);
         greenCell.classList.add('green-shadow');
