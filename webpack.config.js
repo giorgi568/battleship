@@ -17,6 +17,13 @@ module.exports = {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
       },
+      {
+        test: /\.mp3$/,
+        loader: 'file-loader',
+        // query: {
+        //   name: 'static/media/[name].[hash:8].[ext]'
+        // }
+      },
     ],
   },
 };
