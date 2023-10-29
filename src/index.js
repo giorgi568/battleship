@@ -5,7 +5,6 @@ import { initializeBattlePage } from './initializeBattlePage';
 import { drawBoard } from './boardUI';
 import { Player } from './player';
 import { playerMove } from './mainGameFunctions';
-// import {background} from './images/background.jpg'
 
 function startGame() {
   initializeStartingPage();

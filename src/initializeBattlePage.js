@@ -24,6 +24,7 @@ function initializeBattlePage() {
   // Create the score message
   const scoreMessage = document.createElement('div');
   scoreMessage.classList.add('score-message');
+  scoreMessage.setAttribute('id', 'score-message');
   scoreContainer.append(scoreMessage);
 
   const messageText = document.createTextNode(

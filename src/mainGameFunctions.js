@@ -8,7 +8,7 @@ const computerBoard = document.getElementsByClassName('computerCell');
 let adjacentCells = [];
 
 function playerMove(computer, player) {
-  const score = document.getElementById('score');
+  const score = document.getElementById('score-message');
 
   updateScore(computer, player);
 
@@ -52,7 +52,7 @@ function playerMove(computer, player) {
 }
 
 function computerMove(x, y, computer, player) {
-  const score = document.getElementById('score');
+  const score = document.getElementById('score-message');
 
   updateScore(computer, player);
 
