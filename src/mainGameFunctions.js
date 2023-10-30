@@ -1,12 +1,15 @@
 import { updateScore } from './initializeBattlePage';
-import  soundfile  from './audio/explosion.mp3';
-// const score = document.getElementById('score');
+import soundfile from './audio/explosion.mp3';
+import fiasco from './audio/fiasco.mp3';
+import success from './audio/success.mp3';
 
 const playerBoard = document.getElementsByClassName('playerCell');
 const computerBoard = document.getElementsByClassName('computerCell');
 
 let adjacentCells = [];
 let explosionSound = new Audio(soundfile);
+let fiascoSound = new Audio(fiasco);
+let successSound = new Audio(success);
 
 function playerMove(computer, player) {
   const score = document.getElementById('score-message');
@@ -18,16 +21,17 @@ function playerMove(computer, player) {
     cell = cell.map((str) => {
       return parseInt(str, 10);
     });
-    
+
     computerBoard[i].addEventListener(
       'click',
       () => {
         explosionSound.play();
-        
+
         if (computer.board.receiveAttack(cell[0], cell[1])) {
           computerBoard[i].classList.add('ship');
           if (computer.board.allShipsSunk()) {
             score.textContent = 'congrats, you have won';
+            successSound.play();
           }
         } else {
           computerBoard[i].classList.add('water');
@@ -72,6 +76,7 @@ function computerMove(x, y, computer, player) {
 
     if (player.board.allShipsSunk()) {
       score.textContent = 'sorry, you have lost, computer won';
+      fiascoSound.play();
       return;
     }
 
